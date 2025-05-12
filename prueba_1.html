@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mi Sistema Solar</title>
+  <style>
+    body {
+      background: black;
+      overflow: hidden;
+      margin: 0;
+    }
+    #sol {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100px;
+      height: 100px;
+      margin-left: -50px;
+      margin-top: -50px;
+      background: yellow;
+      border-radius: 50%;
+      box-shadow: 0 0 30px yellow;
+    }
+    #planeta {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: blue;
+      border-radius: 50%;
+      box-shadow: 0 0 10px blue;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="sol"></div>
+  <div id="planeta" onclick="mostrarInfo()"></div>
+
+  <script>
+    let planeta = document.getElementById('planeta');
+    let angulo = 0;
+    let radio = 150; // distancia del planeta al Sol
+
+    function moverPlaneta() {
+      angulo += 0.02;
+      let x = window.innerWidth / 2 + radio * Math.cos(angulo) - 20;
+      let y = window.innerHeight / 2 + radio * Math.sin(angulo) - 20;
+      planeta.style.left = x + 'px';
+      planeta.style.top = y + 'px';
+      requestAnimationFrame(moverPlaneta);
+    }
+
+    function mostrarInfo() {
+      alert('¡Hola! Soy un planeta llamado Tierra. Gira alrededor del Sol.');
+    }
+
+    moverPlaneta();
+  </script>
+</body>
+</html>
